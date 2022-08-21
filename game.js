@@ -1,10 +1,13 @@
 const canvas = document.querySelector('#game');
 const game = canvas.getContext('2d');
+let canvasSize;
+let elementsSize;
 
-window.addEventListener('load', startGame);
 
-function startGame() {
-    let canvasSize;
+window.addEventListener('load', setCanvasSize);
+window.addEventListener('resize', setCanvasSize);
+
+function setCanvasSize() {
     if(window.innerHeight > window.innerWidth){
         canvasSize = window.innerWidth * 0.8
     } else {
@@ -15,15 +18,22 @@ function startGame() {
     canvas.setAttribute('width', canvasSize);
     canvas.setAttribute('height', canvasSize);
 
-    const elementsSize = canvasSize / 10;
+    elementsSize = canvasSize / 10;
+    startGame();
+}
+
+function startGame() {
 
     game.font = elementsSize + 'px Verdana';
     game.textAlign = 'end';
 
-    for( let i = 1; i <= 10; i++){
-        game.fillText(emojis['X'], elementsSize * i, elementsSize);
+    const map = maps[2];
+    const mapRows = map.trim().split('\n');
+    const mapRowCols = mapRows.map(row => row.trim().split(''));
+
+    for( let row = 1; row <= 10; row++){
+        for(let col = 0; col <= 10; col++){
+            game.fillText(emojis[mapRowCols[row-1][col-1]], elementsSize * col, elementsSize * row);
+        }
     }
-    
-
-
 }
