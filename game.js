@@ -14,7 +14,7 @@ const pResult = document.querySelector('#result');
 let canvasSize;
 let elementsSize;
 let level = 0;
-let lives = 2;
+let lives = 3;
 
 let timeStart;
 let timePlayer;
@@ -129,7 +129,7 @@ function levelFail(){
     lives--;
     if(lives <= 0){
         level = 0;
-        lives = 2;
+        lives = 3;
         timeStart = undefined;
     } 
         playerPosition.x = undefined;
@@ -155,7 +155,7 @@ function gameWin(){
         }
     } else {
         localStorage.setItem('record_time', playerTime);
-        pResult.innerHTML = "Primera Vez? Muy Bien, ahora trata de superar tu tiempo. 🫡"
+        pResult.innerHTML = `Primera Vez? Muy Bien, ahora trata de superar tu tiempo. 🫡 <button onclick="location.reload()">Reinicia Ahora!</button>`;
     }
 }
 
