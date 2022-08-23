@@ -37,18 +37,18 @@ window.addEventListener('resize', setCanvasSize);
 
 function setCanvasSize() {
     if(window.innerHeight > window.innerWidth){
-        canvasSize = window.innerWidth * 0.7
+        canvasSize = window.innerWidth * 0.6
     } else {
-        canvasSize = window.innerHeight * 0.7
+        canvasSize = window.innerHeight * 0.6
     };
 
-    canvasSize = Number(canvasSize.toFixed(0));
+    canvasSize = Number(canvasSize.toFixed(1));
 
 
     canvas.setAttribute('width', canvasSize);
     canvas.setAttribute('height', canvasSize);
 
-    elementsSize = canvasSize / 10;
+    elementsSize = canvasSize / 9;
 
     playerPosition.x = undefined;
     playerPosition.y = undefined;
@@ -91,60 +91,58 @@ function startGame() {
                     playerPosition.x = posX;
                     playerPosition.y = posY;
                 } 
-                }else if (col == 'I' && level == 0){
+                }else if (col == 'I' && level==0){
                     giftPosition.x = posX;
                     giftPosition.y = posY;
 
-                    base_image = new Image();
-                    base_image.src = "./assets/html5-brands.svg";
-                    base_image.onload = function(){
-                    game.drawImage(base_image, posX-27, posY-27, elementsSize, elementsSize);
-                    
-                    }
+                    make_base();
             } else if (col === 'X'){
                     enemiesPositions.push({x: posX, y: posY});
+                    
                     base_image = new Image();
                     base_image.src = "./assets/wonka.png";
                     base_image.onload = function(){
-                        game.drawImage(base_image, posX-27, posY-27, elementsSize, elementsSize);
+                        game.drawImage(base_image, posX-50, posY-50, elementsSize, elementsSize);
                     }
 
-            } else if (col == 'I' && level == 1){
+            } else if (col == 'I' && level==1){
                     giftPosition.x = posX;
                     giftPosition.y = posY;
-
+                    
                     base_image = new Image();
                     base_image.src = "./assets/css3-brands.svg";
                     base_image.onload = function(){
-                    game.drawImage(base_image, posX-27, posY-27, elementsSize, elementsSize);
+                    game.drawImage(base_image, posX-50, posY-50, elementsSize, elementsSize);
                     
                 }
-            } else if (col == 'I' && level == 2){
+            } else if (col == 'I' && level==2){
                     giftPosition.x = posX;
                     giftPosition.y = posY;
+                    
                     base_image = new Image();
                     base_image.src = "./assets/js-brands.svg";
                     base_image.onload = function(){
-                    game.drawImage(base_image, posX-27, posY-27, elementsSize, elementsSize);
+                    game.drawImage(base_image, posX-50, posY-50, elementsSize, elementsSize);
                     
                 }
             
             }
 
             game.fillText(emoji, posX, posY);
+
         });
     });
     movePlayer();
 }
-/*
+
 function make_base(){
     base_image = new Image();
     base_image.src = "./assets/html5-brands.svg";
     base_image.onload = function(){
-        game.drawImage(base_image, giftPosition.x, giftPosition.y, elementsSize, elementsSize);
+        game.drawImage(base_image, giftPosition.x-50, giftPosition.y-50, elementsSize, elementsSize);
     }
 }
-*/
+
 function movePlayer(){
     const giftCollisionX = playerPosition.x.toFixed(3) == giftPosition.x.toFixed(3);
     const giftCollisionY = playerPosition.y.toFixed(3) == giftPosition.y.toFixed(3);
@@ -164,7 +162,6 @@ function movePlayer(){
     }
 
     game.fillText(emojis['PLAYER'], playerPosition.x, playerPosition.y);
-    
 }
 
 function levelWin(){

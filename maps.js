@@ -9,8 +9,8 @@ const maps=[];maps.push(`
   -XXXXXXXXX
   -XXXXXXXXX
   -XXXXXXXXX
-  -XXXXXXXXX
   OXXXXXXXXX
+  XXXXXXXXXX
 `);maps.push(`
   O--XXXXXXX
   X--XXXXXXX
