@@ -94,6 +94,7 @@ function startGame() {
                 }else if (col == 'I' && level == 0){
                     giftPosition.x = posX;
                     giftPosition.y = posY;
+
                     base_image = new Image();
                     base_image.src = "./assets/html5-brands.svg";
                     base_image.onload = function(){
@@ -102,9 +103,16 @@ function startGame() {
                     }
             } else if (col === 'X'){
                     enemiesPositions.push({x: posX, y: posY});
+                    base_image = new Image();
+                    base_image.src = "./assets/wonka.png";
+                    base_image.onload = function(){
+                        game.drawImage(base_image, posX-27, posY-27, elementsSize, elementsSize);
+                    }
+
             } else if (col == 'I' && level == 1){
                     giftPosition.x = posX;
                     giftPosition.y = posY;
+
                     base_image = new Image();
                     base_image.src = "./assets/css3-brands.svg";
                     base_image.onload = function(){
@@ -188,9 +196,9 @@ function gameWin(){
     if(recordTime){
         if(recordTime >= playerTime){
             localStorage.setItem('record_time', playerTime);
-            pResult.innerHTML = `SUPERASTE EL RECORD 🎉👏🏻 <button onclick="location.reload()">Reinicia Ahora!</button><a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=My%20score%20record%20playing%20NOviEsGamE:%20${playerTime}%20milisegundos%20%20%20%20%20%20SUPERA%20MI%20RECORD%20AQUI:%20%20%20%20%20%20&via=hisahitoMX" data-size="large" data-url="" data-via="@hisahitoMX" data-hashtag="OracleNextEducation">tweet</a>`;
+            pResult.innerHTML = `SUPERASTE EL RECORD 🎉👏🏻 <button onclick="location.reload()">Reinicia Ahora!</button><a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=My%20score%20record%20playing%20NOviEsGamE:%20${playerTime}%20milisegundos%20%20%20%20%20%20SUPERA%20MI%20RECORD%20AQUI:%20%20%20%20%20%20&via=hisahitoMX" data-size="large" data-url="" data-via="@hisahitoMX" data-hashtag="OracleNextEducation"><i class="fa-brands fa-square-twitter"></i></a><a class="linkedin-share-button" href="https://twitter.com/intent/tweet?text=My%20score%20record%20playing%20NOviEsGamE:%20${playerTime}%20milisegundos%20%20%20%20%20%20SUPERA%20MI%20RECORD%20AQUI:%20%20%20%20%20%20&via=hisahitoMX" data-size="large" data-url="" data-via="@hisahitoMX" data-hashtag="OracleNextEducation"><i class="fa-brands fa-linkedin"></i></a>`;
         } else {
-            pResult.innerHTML = `Lo Siento, NO superaste el Record 🤌🏻 <button onclick="location.reload()">Reinicia Ahora!</button>`;
+            pResult.innerHTML = `Lo Siento, NO superaste el Record 🤌🏻 <button onclick="location.reload()">Reinicia Ahora!</button><a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=My%20score%20record%20playing%20NOviEsGamE:%20${playerTime}%20milisegundos%20%20%20%20%20%20SUPERA%20MI%20RECORD%20AQUI:%20%20%20%20%20%20&via=hisahitoMX" data-size="large" data-url="" data-via="@hisahitoMX" data-hashtag="OracleNextEducation"><i class="fa-brands fa-square-twitter"></i></a><a class="linkedin-share-button" href="https://twitter.com/intent/tweet?text=My%20score%20record%20playing%20NOviEsGamE:%20${playerTime}%20milisegundos%20%20%20%20%20%20SUPERA%20MI%20RECORD%20AQUI:%20%20%20%20%20%20&via=hisahitoMX" data-size="large" data-url="" data-via="@hisahitoMX" data-hashtag="OracleNextEducation"><i class="fa-brands fa-linkedin"></i></a>`;
         }
     } else {
         localStorage.setItem('record_time', playerTime);
