@@ -84,17 +84,43 @@ function startGame() {
             const emoji = emojis[col];
             const posX = elementsSize * (colI+1);
             const posY = elementsSize * (rowI+1);
+            let base_image;
 
             if( col == 'O'){
                 if(!playerPosition.x && !playerPosition.y){
                     playerPosition.x = posX;
                     playerPosition.y = posY;
                 } 
-                }else if (col == 'I'){
+                }else if (col == 'I' && level == 0){
                     giftPosition.x = posX;
                     giftPosition.y = posY;
+                    base_image = new Image();
+                    base_image.src = "./assets/html5-brands.svg";
+                    base_image.onload = function(){
+                    game.drawImage(base_image, posX-27, posY-27, elementsSize, elementsSize);
+                    
+                    }
             } else if (col === 'X'){
                     enemiesPositions.push({x: posX, y: posY});
+            } else if (col == 'I' && level == 1){
+                    giftPosition.x = posX;
+                    giftPosition.y = posY;
+                    base_image = new Image();
+                    base_image.src = "./assets/css3-brands.svg";
+                    base_image.onload = function(){
+                    game.drawImage(base_image, posX-27, posY-27, elementsSize, elementsSize);
+                    
+                }
+            } else if (col == 'I' && level == 2){
+                    giftPosition.x = posX;
+                    giftPosition.y = posY;
+                    base_image = new Image();
+                    base_image.src = "./assets/js-brands.svg";
+                    base_image.onload = function(){
+                    game.drawImage(base_image, posX-27, posY-27, elementsSize, elementsSize);
+                    
+                }
+            
             }
 
             game.fillText(emoji, posX, posY);
@@ -102,7 +128,15 @@ function startGame() {
     });
     movePlayer();
 }
-
+/*
+function make_base(){
+    base_image = new Image();
+    base_image.src = "./assets/html5-brands.svg";
+    base_image.onload = function(){
+        game.drawImage(base_image, giftPosition.x, giftPosition.y, elementsSize, elementsSize);
+    }
+}
+*/
 function movePlayer(){
     const giftCollisionX = playerPosition.x.toFixed(3) == giftPosition.x.toFixed(3);
     const giftCollisionY = playerPosition.y.toFixed(3) == giftPosition.y.toFixed(3);
@@ -154,7 +188,7 @@ function gameWin(){
     if(recordTime){
         if(recordTime >= playerTime){
             localStorage.setItem('record_time', playerTime);
-            pResult.innerHTML = `SUPERASTE EL RECORD 🎉👏🏻 <button onclick="location.reload()">Reinicia Ahora!</button>`;
+            pResult.innerHTML = `SUPERASTE EL RECORD 🎉👏🏻 <button onclick="location.reload()">Reinicia Ahora!</button><a class="twitter-share-button" href="https://twitter.com/intent/tweet?text=My%20score%20record%20playing%20NOviEsGamE:%20${playerTime}%20milisegundos%20%20%20%20%20%20SUPERA%20MI%20RECORD%20AQUI:%20%20%20%20%20%20&via=hisahitoMX" data-size="large" data-url="" data-via="@hisahitoMX" data-hashtag="OracleNextEducation">tweet</a>`;
         } else {
             pResult.innerHTML = `Lo Siento, NO superaste el Record 🤌🏻 <button onclick="location.reload()">Reinicia Ahora!</button>`;
         }
